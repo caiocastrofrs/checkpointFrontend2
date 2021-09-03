@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;700;900&display=swap');
+
+body {
+    text-align: center;
+    font-family: 'Red Hat Display', sans-serif;
+}
+.inserir-card {
+    position: absolute;
+    left:50%;
+    bottom:50%;
+    transform: translate(-50%);
+    display:flex;
+    flex-direction: column;
+    width:150px;
+    gap:10px;
+    padding:20px;
+}
+#urlImg,
+#titulo,
+#descricao {
+    border: none;
+    height:30px;
+}
+#urlImg:focus,
+#titulo:focus {
+    border: none;
+}
+.botao-card {
+    margin:0 auto;
+    padding:10px;
+}
+img {
+    max-width: 100%;
+}
+#card-container {
+    display: flex;
+    margin: 100px auto;
+    padding: 20px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 80%;
+    gap:30px;
+    justify-content: center;
+}
+#card-container,
+.inserir-card {
+    background-color: #f3f3f3;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px #3f3f3f;
+}
+.card {
+    width:400px;
+    margin:40px;
+}
+.card :nth-child(2) {
+    box-shadow: 1px 1px 15px #3f3f3f;
+    border-radius:10px;
+}
+button {
+    border:none;
+    background-color: #6C91C2;
+    color:#f3f3f3;
+    font-size: 1.2rem;
+    padding:5px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+#excluir {
+    display: none;
+    position: absolute;
+    margin: 10px;
+    width:15px;
+    cursor:pointer;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid red;
+}
+
