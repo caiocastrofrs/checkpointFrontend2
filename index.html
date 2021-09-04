@@ -5,21 +5,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/changetheme.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <title>Aula 11</title>
 </head>
 <body>
+    <header>
+        <img src="imgs/logo.png">
+    </header>
     <main>
         <section id="pop-up" >
-            <form class="inserir-card">
+            <form class="form-inserir-card">
                 <input type="text" placeholder="URL da Imagem" id="urlImg">
                 <input type="text" placeholder="Título da imagem" id="titulo">
                 <input type="text" placeholder="Descrição" id="descricao">
-                <button onclick="inserirCard()">Inserir Filme</button>
+                <button onclick="inserirCard()" id="btnEnviar">Inserir filme</button>
+                <button onclick="fecharPopup()">Fechar</button>
             </form>
         </section>
-        <button onclick="abrirPopup()" class="botao-card">Inserir Filme</button>
-        <div id="card-container"></div>
+        <section class="section-conteudo-container">
+            <div class="section-div-botoes">
+                <button onclick="abrirPopup()" class="botao-card"><i class="medium material-icons">add</i></button>
+                <button onclick="checarCardsExcluir()" class="botao-card"><i class="large material-icons">delete</i></button>
+                <button onclick="checarCardEditar()" class="botao-card"><i class="large material-icons">edit</i></button>
+            </div>
+            <div id="card-container"></div>
+        </section>
+        
     </main>
     <script src="./js/app.js"></script>
 </body>
