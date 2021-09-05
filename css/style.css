@@ -58,7 +58,10 @@ button {
     box-shadow: 1px 1px 15px #3f3f3f;
     border-radius:10px;
 }
-
+.card {
+    max-width:300px;
+    animation: showUp .1s; 
+}
 #excluir {
     display: none;
     position: absolute;
@@ -66,9 +69,23 @@ button {
     width:15px;
     cursor:pointer;
 }
+#pop-up-alerta {
+    position:absolute;
+    left:50%;
+    top:-60px;
+    transform: translate(-50%);
+    width:270px;
+    height:30px;
+    border-radius: 10px;
+    background-color: #f3f3f3;
+    box-shadow: 1px 1px 3px #3f3f3f;
+    padding:10px;
+    font-size:20px;
+}
 #card-container {
     display: flex;
     width:90%;
+    height:500px;
     gap:35px;
     flex-direction: row;
     flex-wrap: wrap;
@@ -95,4 +112,13 @@ button {
 }
 .editar-card {
     border: 5px solid #6991e9;
+}
+
+@keyframes showUp {
+    from {transform: scale(0);}
+    to {transform: scale(1);}
+}
+@keyframes popUpShowUp {
+    from {top:-60px;}
+    to {top: 50px;}
 }

@@ -39,15 +39,24 @@ function criarCard(caminhoImagem, tituloH2, descricaoP) {
 
 }
 function inserirCard() {
-    let img = document.getElementById('urlImg').value;
-    let titulo = document.getElementById('titulo').value;
-    let descricao = document.getElementById('descricao').value;
-    let card = criarCard(img, titulo, descricao);
-    card.addEventListener('dblclick', function() {
-        this.classList.toggle('excluir-card');
-    })
-    document.getElementById('card-container').appendChild(card);
-    fecharPopup(); 
+    let img;
+    let titulo;
+    let descricao;
+    if((document.getElementById('urlImg').value.length > 0) && (document.getElementById('titulo').value.length > 0) && (document.getElementById('descricao').value.length > 0)) {
+        img = document.getElementById('urlImg').value;
+        titulo = document.getElementById('titulo').value;
+        descricao = document.getElementById('descricao').value;
+        let card = criarCard(img, titulo, descricao);
+        card.addEventListener('dblclick', function() {
+            this.classList.toggle('excluir-card');
+        })
+        document.getElementById('card-container').appendChild(card);
+        limparCampos();
+        fecharPopup(); 
+    } else {
+        document.getElementById('pop-up-alerta').style.animation = "popUpShowUp 1s both";
+    }
+
 }
 
 function selecionarCard(card) {
@@ -87,9 +96,30 @@ function qntdCardsEditar(arrayCards) {
 }
 function editarCard() {
     let card = document.querySelector(".editar-card");
-    card.children[0].src = document.getElementById('urlImg').value;
-    card.children[1].innerText = document.getElementById('titulo').value;
-    card.children[2].innerText = document.getElementById('descricao').value;
+    if(document.getElementById('urlImg').value.length > 0) {
+
+        card.children[0].src = document.getElementById('urlImg').value;
+    }
+    if(document.getElementById('titulo').value.length > 0) {
+        card.children[1].innerText = document.getElementById('titulo').value;
+    }
+    if(document.getElementById('descricao').value.length > 0) {
+        card.children[2].innerText = document.getElementById('descricao').value;
+    }
+    fecharPopup();
+    limparCampos();
+    resetBotaoInserirCard();
+}
+
+function limparCampos() {
+    document.getElementById('urlImg').value = "";
+    document.getElementById('titulo').value = "";
+    document.getElementById('descricao').value = "";
+}
+function resetBotaoInserirCard() {
+    let botao = document.getElementById('btnEnviar');
+    botao.innerText = "Inserir filme";
+    botao.setAttribute('onclick',`inserirCard()`);
 }
 function checarCardEditar() {
     let cards = document.querySelectorAll('.card');
@@ -98,14 +128,13 @@ function checarCardEditar() {
         if(card.classList.contains("editar-card")) {
             if(!cardOuFalso) {
                 alert('Edite apenas um card por vez');
+                break;
             } else {
                 let botao = document.getElementById('btnEnviar');
                 botao.innerText = "Editar card";
                 botao.setAttribute('onclick',`editarCard()`);
                 abrirPopup();
             }
-
-            
         }
     }
 }
