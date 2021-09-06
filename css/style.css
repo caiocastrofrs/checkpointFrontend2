@@ -1,105 +1,105 @@
 @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;700;900&display=swap');
-
 body {
     text-align: center;
     font-family: 'Red Hat Display', sans-serif;
     font-size:15px;
+}
+header,
+.form-inserir-card,
+.section-conteudo-container,
+.section-div-botoes,
+#card-container {
+    display: flex;
+}
+header,
+#card-container {
+    justify-content: center;
+}
+header,
+.section-div-botoes {
+    height:170px;
+}
+button,
+#urlImg,
+#titulo,
+#descricao,
+#urlImg:focus,
+#titulo:focus {
+    border: none;
+}
+button,
+.card :nth-child(1) {
+    border-radius:10px;
 }
 img {
     max-width: 100%;
     max-height: 100%;
 }
 header {
-    display: flex;
-    justify-content: center;
     align-items: center;
-    height:150px;
+}
+button,
+#excluir {
+    cursor:pointer;
 }
 button {
-    border:none;
     background-color: #000;
     color:#f3f3f3;
     font-size: 1.2rem;
     padding:5px;
-    border-radius: 10px;
-    cursor: pointer;
+}
+.form-inserir-card,
+#excluir {
+    position: absolute;
+}
+.form-inserir-card,
+.section-div-botoes {
+    flex-direction: column;
+}
+.form-inserir-card,
+.section-div-botoes {
+    gap:10px;
+}
+.form-inserir-card,
+.card :nth-child(1) {
+    box-shadow: 1px 1px 10px #3f3f3f;
 }
 .form-inserir-card {
-    position: absolute;
     left:50%;
     bottom:50%;
     transform: translate(-50%);
-    display:flex;
-    flex-direction: column;
     width:250px;
-    gap:10px;
     padding:20px;
     z-index:2;
     background-color: #f3f3f3;
     border-radius: 5px;
-    box-shadow: 1px 1px 5px #3f3f3f;
 }
 .section-conteudo-container {
     margin:150px;
-    display:flex;
     gap:100px;
-    flex-wrap: nowrap;
 }
 .botao-card {
     padding:10px;
 }
-.section-div-botoes {
-    height:170px;
-    display: flex;
-    flex-direction: column;
-    gap:10px;
-}
-.card :nth-child(1) {
-    box-shadow: 1px 1px 15px #3f3f3f;
-    border-radius:10px;
-}
 .card {
     max-width:300px;
-    animation: showUp .1s; 
+    animation-duration: 1s;
 }
 #excluir {
     display: none;
-    position: absolute;
     margin: 10px;
     width:15px;
-    cursor:pointer;
-}
-#pop-up-alerta {
-    position:absolute;
-    left:50%;
-    top:-60px;
-    transform: translate(-50%);
-    width:270px;
-    height:30px;
-    border-radius: 10px;
-    background-color: #f3f3f3;
-    box-shadow: 1px 1px 3px #3f3f3f;
-    padding:10px;
-    font-size:20px;
 }
 #card-container {
-    display: flex;
     width:90%;
     height:500px;
     gap:35px;
-    flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
 }
 #urlImg,
 #titulo,
 #descricao {
-    border: none;
     height:30px;
-}
-#urlImg:focus,
-#titulo:focus {
-    border: none;
 }
 .excluir-card {
     
@@ -113,12 +113,28 @@ button {
 .editar-card {
     border: 5px solid #6991e9;
 }
-
-@keyframes showUp {
+@keyframes animacaoCriarCard {
     from {transform: scale(0);}
     to {transform: scale(1);}
 }
-@keyframes popUpShowUp {
-    from {top:-60px;}
-    to {top: 50px;}
+@keyframes animacaoExcluirCard {
+    from {transform: scale(1);}
+    to {transform: scale(0);}
+}
+
+@media (max-width: 1024px) {
+    .section-conteudo-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .section-div-botoes {
+        flex-direction: row;
+        height:45px;
+    }
+    .card img {
+        min-width:250px;
+    }
+    .form-inserir-card {
+        bottom:20%;
+    }
 }
