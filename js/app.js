@@ -29,6 +29,13 @@ function criarCard(caminhoImagem, tituloH2, descricaoP) {
     img.alt = `poster do filme ${titulo}`;
     titulo.innerText = tituloH2;
     descricao.innerText = descricaoP;
+
+    card.addEventListener('dblclick', function() {
+        this.classList.toggle('excluir-card');
+    })
+
+    card.style.animationName = "animacaoCriarCard";
+    
     card.appendChild(img);
     card.appendChild(titulo);
     card.appendChild(descricao);
@@ -46,11 +53,6 @@ function inserirCard() {
         titulo = document.getElementById('titulo').value;
         descricao = document.getElementById('descricao').value;
         card = criarCard(img, titulo, descricao);
-
-        card.addEventListener('dblclick', function() {
-            this.classList.toggle('excluir-card');
-        })
-        card.style.animationName = "animacaoCriarCard";
         document.getElementById('card-container').appendChild(card);
         limparCampos();
         fecharPopup(); 
