@@ -25,7 +25,6 @@ function criarCard(caminhoImagem, tituloH2, descricaoP) {
 
     card.classList.add('card');
     card.setAttribute('onclick', "addEditSelecao(this)");
-    card.setAttribute('draggable', 'true');
     img.src = caminhoImagem;
     img.alt = `poster do filme ${titulo}`;
     titulo.innerText = tituloH2;
