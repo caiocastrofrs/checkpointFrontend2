@@ -10,12 +10,18 @@ divInserirCard.addEventListener('submit', function(e){
 //ABRIR FORM
 function abrirPopup() {
     divInserirCard.style.display = "flex";
+    document.getElementById('card-container').style.pointerEvents = "none";
+    document.querySelector('.section-div-botoes').style.pointerEvents = "none";
 }
 //FECHAR FORM
 function fecharPopup() {
+    document.getElementById('card-container').style.pointerEvents = "auto";
+    document.querySelector('.section-div-botoes').style.pointerEvents = "auto";
     divInserirCard.style.display = "none";
     resetBotaoInserirCard();
+    limparCampos();
 }
+
 //FUNÇÃO PARA CRIAR TODOS OS ELEMENTOS DO CARD
 function criarCard(caminhoImagem, tituloH2, descricaoP) {
     let card = document.createElement('section');
@@ -29,13 +35,10 @@ function criarCard(caminhoImagem, tituloH2, descricaoP) {
     img.alt = `poster do filme ${titulo}`;
     titulo.innerText = tituloH2;
     descricao.innerText = descricaoP;
-
     card.addEventListener('dblclick', function() {
         this.classList.toggle('excluir-card');
     })
-
     card.style.animationName = "animacaoCriarCard";
-    
     card.appendChild(img);
     card.appendChild(titulo);
     card.appendChild(descricao);
@@ -48,6 +51,7 @@ function inserirCard() {
     let titulo;
     let descricao;
     let card;
+    
     if(checarCamposVazios()) {
         img = document.getElementById('urlImg').value;
         titulo = document.getElementById('titulo').value;
@@ -96,38 +100,38 @@ function getArrayCards() {
 }
 //FUNÇÃO PARA EXCLUIR TODO CARD QUE ESTIVER COM A SELEÇÃO DE EXCLUIR
 function checarCardsSelecaoExcluir() {
-    let cards = getArrayCards();
-    for(card of cards) {
-        if(card.classList.contains("excluir-card")) {
-            excluirCard(card);
+    let cards = document.querySelectorAll(".excluir-card");
+    if(cards.length == 0) {
+        alert("Não há cards para remover");
+    } else {
+        for(card of cards) {
+            if(card.classList.contains("excluir-card")) {
+                excluirCard(card);
+            }
         }
     }
 }
 //FUNÇÃO PARA RETORNAR FALSO CASO TENHA MAIS DE UM CARD COM A SELEÇÃO DE EDIÇÃO OU RETORNA O CARD SELECIONADO
 function checkQntdCardsEditar(arrayCards) {
-    let cardSelecionado;
     let cont = 0;
     for(card of arrayCards) {
         if(card.classList.contains("editar-card")) {
             cont++;
-            cardSelecionado = card;
         } 
     }
     if(cont > 1) {
-        return false;
-    }else {
-        return cardSelecionado;
-    }   
+        return true;
+    } else if(cont == 0) return false;
 }
+
 //FUNÇÃO PARA MUDAR O BOTÃO DE INSERIR FILME PARA EDITAR CARD E SETAR A FUNÇÃO editarCard() NO BOTÃO
 function popUpEditar() {
-    let cards = getArrayCards();
-    let cardOuFalse = checkQntdCardsEditar(cards); 
-    console.log(cards);
-    if(cards.length == 0) {
+    let card = document.querySelector(".editar-card");
+    if(!card) {
         alert("Não há cards!")
-    } else if(!cardOuFalse) {
+    } else if(checkQntdCardsEditar(getArrayCards())) {
         alert('Edite apenas um card por vez');
+
     }else {
         let botao = document.getElementById('btnEnviar');
         botao.innerText = "Editar card";
@@ -147,10 +151,12 @@ function editarCard() {
     if(document.getElementById('descricao').value.length > 0) {
         card.children[2].innerText = document.getElementById('descricao').value;
     }
+    card.classList.remove('editar-card');
     resetBotaoInserirCard();
-    fecharPopup();
     limparCampos();
+    fecharPopup();
 }
+
 //FUNÇÃO PARA FORMATAR O BOTÃO DO FORM DE EDITAR CARD PARA INSERIR CARD
 //É NECESSARIO POIS ESTOU UTILIZANDO O MESMO FORMULÁRIO PARA CRIAR E EDITAR CARD
 //QUANDO O BOTÃO CRIAR CARD É CLICADO, O BOTÃO "INSERIR FILME" VEM COM A FUNÇÃO inserirCard();

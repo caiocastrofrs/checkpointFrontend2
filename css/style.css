@@ -49,7 +49,7 @@ button {
     padding:5px;
 }
 .form-inserir-card,
-#excluir {
+#excluir{
     position: absolute;
 }
 .form-inserir-card,
@@ -96,6 +96,7 @@ button {
     gap:35px;
     flex-wrap: wrap;
 }
+
 #urlImg,
 #titulo,
 #descricao {
